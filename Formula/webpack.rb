@@ -4,24 +4,24 @@ require "json"
 class Webpack < Formula
   desc "Bundler for JavaScript and friends"
   homepage "https://webpack.js.org/"
-  url "https://registry.npmjs.org/webpack/-/webpack-5.58.1.tgz"
-  sha256 "c13877bf1927b510000e34d380f7d422db5d83ae373f538fa9598db3b3acb73e"
+  url "https://registry.npmjs.org/webpack/-/webpack-5.59.0.tgz"
+  sha256 "1514c1c64190cecf84fe385e9a5de1303286ac8a67fd48cc2c2ebf109911c4a4"
   license "MIT"
   head "https://github.com/webpack/webpack.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "4e9f4e06d7c179f57d15eba9a220112249c5af29e33a52b1a89a92822e268aa8"
-    sha256 cellar: :any_skip_relocation, big_sur:       "08a60b9b6c42ddf0306020c89962e5860acb9a8cec7fdc9cbc28613920108121"
-    sha256 cellar: :any_skip_relocation, catalina:      "08a60b9b6c42ddf0306020c89962e5860acb9a8cec7fdc9cbc28613920108121"
-    sha256 cellar: :any_skip_relocation, mojave:        "08a60b9b6c42ddf0306020c89962e5860acb9a8cec7fdc9cbc28613920108121"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8d7ae29c5c249ddc034d5f85c2419708cf4fe303087d7f12a6d99d2467316cd9"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "4baa7ae378692daf722be8835469348254f1e4250e5949ce999920ac8d220cd3"
+    sha256 cellar: :any_skip_relocation, big_sur:       "d2fb165f2097678a65ce905163e44a01e27a6e455a2ecd037d97e3cc2e069078"
+    sha256 cellar: :any_skip_relocation, catalina:      "d2fb165f2097678a65ce905163e44a01e27a6e455a2ecd037d97e3cc2e069078"
+    sha256 cellar: :any_skip_relocation, mojave:        "d2fb165f2097678a65ce905163e44a01e27a6e455a2ecd037d97e3cc2e069078"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a8a4d6f0af40dfa3bcdee639187f8b1bcdd06154229169447c79ecc1018495b8"
   end
 
   depends_on "node"
 
   resource "webpack-cli" do
-    url "https://registry.npmjs.org/webpack-cli/-/webpack-cli-4.9.0.tgz"
-    sha256 "d00063d3fe0ba978776a1dcfbfd1b0e03e84cde00169e94ccf7ed94f7d9703a5"
+    url "https://registry.npmjs.org/webpack-cli/-/webpack-cli-4.9.1.tgz"
+    sha256 "0e80f38d28019f7c30f7237ca0b7a250dfe0b561d07d8248b162dde663cd54ff"
   end
 
   def install

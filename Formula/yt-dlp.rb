@@ -3,17 +3,17 @@ class YtDlp < Formula
 
   desc "Fork of youtube-dl with additional features and fixes"
   homepage "https://github.com/yt-dlp/yt-dlp"
-  url "https://files.pythonhosted.org/packages/ee/8c/559a72b790e20660dd71bf8d7e638cb811d7df41c11f335b17d358546126/yt-dlp-2021.10.9.tar.gz"
-  sha256 "dc6c290ac208b2feda5c6760c20883d9c8128da37630a72894a63b08cf411f29"
+  url "https://files.pythonhosted.org/packages/83/c3/30c12eab2c20dcb8609be38d235a21990228446f0dea2a1d5afc8b1a5d9a/yt-dlp-2021.10.10.tar.gz"
+  sha256 "cc96211e8e55ebbb48d2e6609c0d0942507eb5471b2ce74e38f7b95f8d70a4e7"
   license "Unlicense"
   head "https://github.com/yt-dlp/yt-dlp.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "d43ae674524f8df7b934efe41ba641ad824089a7aaa123cb5e02a0cea4dd5ce5"
-    sha256 cellar: :any_skip_relocation, big_sur:       "4762e8c6d3b38d8d0319a4de0aa38c95ae333ed15b17ecb104b38922e7e369a8"
-    sha256 cellar: :any_skip_relocation, catalina:      "e30edb4852c5e0b15819225f3897f65be0e26c8f84a8087c244acc023e8bf60b"
-    sha256 cellar: :any_skip_relocation, mojave:        "23a5b14765758aa3d01fcd52e36af633862bccfe7e898dda7e8c2bc9e2d14cb8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "180f570da0ab7fd1330e4e64c9a0f8c302ebf0f32a344bd4148a6be22ed40267"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "ef335c9197c622cd83af07eb3bd104825c954204183c7a3d32b69b15c577de33"
+    sha256 cellar: :any_skip_relocation, big_sur:       "969caabe6681c7ce08a356a9d67db7bb1ac19a54dae806cd039512eca31c8c31"
+    sha256 cellar: :any_skip_relocation, catalina:      "7849aa7938120dbfcdae1e8672fd2e9e597852d6bb76f7c06992a8a3d6fa3119"
+    sha256 cellar: :any_skip_relocation, mojave:        "625ad2e6f9b220e14d8215c9f76f7cf313c0b58549bd9d7cb2e427ea9c031691"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1a5f4e3cd4ec68a7ed436f8912a713be0e893615d4306ede44e8b8b3aeb81ce0"
   end
 
   depends_on "python@3.10"

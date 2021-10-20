@@ -5,6 +5,7 @@ class Llvm < Formula
   sha256 "6075ad30f1ac0e15f07c1bf062c1e1268c241d674f11bd32cdf0e040c71f2bf3"
   # The LLVM Project is under the Apache License v2.0 with LLVM Exceptions
   license "Apache-2.0" => { with: "LLVM-exception" }
+  revision 1
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
@@ -13,11 +14,11 @@ class Llvm < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_big_sur: "49f4101d2663dc0165b28d50f48bff45bbca54a6406842c1fc975661466102a4"
-    sha256 cellar: :any,                 big_sur:       "b70b2cf98830f727b0bf64fa648647d14136b9fe3cb0467b0128d475130f1f3b"
-    sha256 cellar: :any,                 catalina:      "f98e61dbcb1e7f1e7c5c8909c55565c221c6f527dd6d0de56b1a304c9acb9524"
-    sha256 cellar: :any,                 mojave:        "6d37d929258a567b28c08d51b8cdfa656ff278de5163f7214e371eb353588377"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3ef7c37bc20a46fa1c5af82f868f0c194de0f4a637607188ea9cd0357689b43f"
+    sha256 cellar: :any,                 arm64_big_sur: "1213e5b2e63bc8d8440320cccd316a04b9824eba563534e4b5cfca000c5acf29"
+    sha256 cellar: :any,                 big_sur:       "dc0ac71f6ce7183b0fa4745fd94e08c55770dd1ee6d38d63f0c503d644937bb6"
+    sha256 cellar: :any,                 catalina:      "dbcd8e6f48bf03b4730b92f4fe6351af97addc2db3eefde3ba85402b120368f5"
+    sha256 cellar: :any,                 mojave:        "d2e8294ee877ecb1cf6b3d36f1f8bbc5f7749306b3b25ef988886600e931b7b4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5e113ff32922d209fb85a0a6ba11931a2996146b7f71d7ac22caf1521f72349a"
   end
 
   # Clang cannot find system headers if Xcode CLT is not installed

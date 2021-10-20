@@ -6,25 +6,25 @@ class Awscli < Formula
   license "Apache-2.0"
 
   stable do
-    url "https://github.com/aws/aws-cli/archive/2.2.43.tar.gz"
-    sha256 "0284c0c33b682d7cf08975d1240838ac99901b744c83490b24a9bbf1ff1a4803"
+    url "https://github.com/aws/aws-cli/archive/2.2.47.tar.gz"
+    sha256 "ec361dffbd79f6c4f9c97bc17b9a8792d35dbfdccc663e25d8b27e6ccf0289cf"
 
     # Botocore v2 is not available on PyPI and version commits are not tagged. One way to update:
     # 1. Get `botocore` version at https://github.com/aws/aws-cli/blob/#{version}/setup.cfg
     # 2. Get commit matching version at https://github.com/boto/botocore/commits/v2
     resource "botocore" do
-      url "https://github.com/boto/botocore/archive/ec4c90582ce2b2446dc5c3e259bc5d146ef2973d.tar.gz"
-      sha256 "9243098716e79efb97204414e014db231e6e211fd7f471d3384eafd096232c15"
-      version "2.0.0dev151"
+      url "https://github.com/boto/botocore/archive/7083e5c204e139dc41f646e0ad85286b5e7c0c23.tar.gz"
+      sha256 "5810653b025bc5041914c2abf1e7e7ae0f15cdc83fc21d7ac3b0ee1b5814fd4f"
+      version "2.0.0dev155"
     end
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_big_sur: "10ceeeba7dfcee2df9746e3442b72beced02a8d3c9811755144fc4257cfec418"
-    sha256 cellar: :any,                 big_sur:       "cfff09e6f43afbfa367f7bea2de8dc7c1462e4e9bc96fbf00461bad649326272"
-    sha256 cellar: :any,                 catalina:      "cbbaf1d8a5559c71b80dab7935baceb1e76ff4fde745f2f4b44f9ebf69512c51"
-    sha256 cellar: :any,                 mojave:        "0c13c38e32e34bdf0d6c9360b64cf8e1ca9957fe76bdeb28d9a057bbe3a28fb7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6204f57c2d60e941106aefa06150e05faf4c77048b03630d03ab42c22824d990"
+    sha256 cellar: :any,                 arm64_big_sur: "a609b8f06ddf5fbaae52f611ea118d41691e1ef8d432ec518cef140e908c328d"
+    sha256 cellar: :any,                 big_sur:       "5488bdf6e6404fa94af4beda53efefc9e4527c72f1378cc10ea46e4032595850"
+    sha256 cellar: :any,                 catalina:      "a5114b36d50aa13db1c61f56828dbdd34104882e5626d8d77ae6976bc6f35ae4"
+    sha256 cellar: :any,                 mojave:        "62131171912023710b1f9e615d19ee7f0f2472744c3110eda1f45a08f04b3cce"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b241a42810765085a7d4a205ae35a58015a42a0a202138b41505ce507e30abef"
   end
 
   head do
@@ -127,7 +127,21 @@ class Awscli < Formula
       ENV.prepend "CFLAGS", "-I./build/deps/install/include"
       ENV.prepend "LDFLAGS", "-L./build/deps/install/lib"
     end
-    virtualenv_install_with_resources
+
+    # venv.pip_install_and_link cannot be used due to requiring the `--no-build-isolation` flag
+    # See upstream build instructions: https://github.com/aws/aws-cli/blob/2.2.44/requirements-runtime.txt
+    # This should be able to be reversed in future: https://github.com/Homebrew/homebrew-core/pull/86527#issuecomment-936763994
+    venv = virtualenv_create(libexec, "python3")
+    venv.pip_install resources
+
+    system libexec/"bin/pip", "install", "-v", "--no-deps",
+                              "--no-binary", ":all:",
+                              "--ignore-installed",
+                              "--no-build-isolation",
+                              buildpath
+
+    bin.install_symlink Dir[libexec/"bin/aws*"]
+
     pkgshare.install "awscli/examples"
 
     rm Dir["#{bin}/{aws.cmd,aws_bash_completer,aws_zsh_completer.sh}"]
@@ -141,8 +155,6 @@ class Awscli < Formula
         if [[ -f $e ]]; then source $e; fi
       }
     EOS
-
-    system libexec/"bin/python3", "scripts/gen-ac-index", "--include-builtin-index"
   end
 
   def caveats
